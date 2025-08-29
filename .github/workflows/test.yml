@@ -1,0 +1,27 @@
+---
+name: Test
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          registry-url: https://npm.pkg.github.com
+      - name: Install dependencies and run test
+        run: |
+          npm ci
+          npm test
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.REPO_READONLY_TOKEN }}

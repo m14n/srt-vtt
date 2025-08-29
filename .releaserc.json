@@ -1,0 +1,3 @@
+{
+  "extends": "@m14n/devkit/semantic-release"
+}

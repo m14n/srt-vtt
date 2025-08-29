@@ -1,0 +1,88 @@
+{
+  "name": "@m14n/srt-vtt",
+  "description": "Lightweight TypeScript library to parse/serialize WebVTT and SRT with strong VTT cue settings.",
+  "license": "MIT",
+  "keywords": [
+    "webvtt",
+    "vtt",
+    "srt",
+    "subtitles",
+    "captions",
+    "typescript"
+  ],
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "audit": "npm audit --omit-dev",
+    "build": "tsup",
+    "clean": "rimraf coverage dist",
+    "check": "npx tsc --noEmit && npm run build && es-check es2022 --module 'dist/*.mjs'",
+    "doc": "typedoc",
+    "fix": "npx prettier --write . && npx eslint . --fix",
+    "lint": "npx prettier --check . && npx eslint . --max-warnings 0",
+    "prebuild": "npm run clean && npm run lint",
+    "test": "vitest --run --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m14n/srt-vtt.git"
+  },
+  "author": "Michael Krohmann",
+  "bugs": {
+    "url": "https://github.com/m14n/srt-vtt/issues"
+  },
+  "homepage": "https://github.com/m14n/srt-vtt",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@m14n/devkit": "^0.1.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.4",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.0.3",
+    "@swc/core": "^1.13.5",
+    "@types/node": "^24.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.41.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "es-check": "^9.3.1",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-tsdoc": "^0.4.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "markdownlint-cli": "^0.45.0",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "semantic-release": "^24.2.7",
+    "terser": "^5.43.1",
+    "tslib": "^2.8.1",
+    "tsup": "^8.5.0",
+    "typedoc": "^0.28.11",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

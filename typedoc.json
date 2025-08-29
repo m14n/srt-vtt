@@ -1,0 +1,11 @@
+{
+  "disableSources": true,
+  "entryPoints": ["./src"],
+  "exclude": ["./test/*"],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "hideGenerator": true,
+  "includeVersion": true,
+  "name": "SRT-VTT",
+  "out": "doc"
+}

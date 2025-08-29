@@ -1,0 +1,10 @@
+[general]
+contrib=contrib-title-conventional-commits
+ignore=B5, B6
+ignore-fixup-commits=false
+
+[contrib-title-conventional-commits]
+types=fix,feat,chore,docs,style,refactor,perf,test,revert,ci,build
+
+[title-must-not-contain-word]
+words=wip,fixup

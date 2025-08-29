@@ -1,0 +1,9 @@
+---
+extends: default
+
+ignore: |
+  .venv
+  node_modules
+
+rules:
+  truthy: disable
