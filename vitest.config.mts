@@ -1,13 +1,13 @@
 /// <reference types='vitest' />
-import { defineConfig } from "vitest/config";
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
     coverage: {
-      include: ["src"],
+      include: ['src'],
     },
-    environment: "node",
+    environment: 'node',
     globals: true,
-    include: ["./test/**/*.spec.ts"],
+    include: ['./test/**/*.spec.ts'],
   },
 });

@@ -43,9 +43,7 @@ export const parseSrtTimestamp = (input: string): number => {
   }
   const [, hh, mm, ss, ms] = results;
   return (
-    ((parseInt(hh, 10) * 60 + parseInt(mm, 10)) * 60 + parseInt(ss, 10)) *
-      1000 +
-    parseInt(ms, 10)
+    ((parseInt(hh, 10) * 60 + parseInt(mm, 10)) * 60 + parseInt(ss, 10)) * 1000 + parseInt(ms, 10)
   );
 };
 
@@ -64,10 +62,7 @@ export const parseVttTimestamp = (input: string): number => {
   }
   const [, hh, mm, ss, ms] = results;
   const h = hh ? parseInt(hh, 10) : 0;
-  return (
-    ((h * 60 + parseInt(mm, 10)) * 60 + parseInt(ss, 10)) * 1000 +
-    parseInt(ms, 10)
-  );
+  return ((h * 60 + parseInt(mm, 10)) * 60 + parseInt(ss, 10)) * 1000 + parseInt(ms, 10);
 };
 
 // Private helper functions

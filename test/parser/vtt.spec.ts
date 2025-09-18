@@ -20,9 +20,7 @@ describe('parser', () => {
     });
 
     it('throws on missing WEBVTT header', () => {
-      const input = ['00:00:01.000 --> 00:00:04.000', 'Hello world!'].join(
-        '\n',
-      );
+      const input = ['00:00:01.000 --> 00:00:04.000', 'Hello world!'].join('\n');
       expect(() => parseVtt(input)).toThrow();
     });
 
@@ -175,11 +173,7 @@ describe('parser', () => {
     });
 
     it('ignores invalid cue line setting', () => {
-      const input = [
-        'WEBVTT',
-        '',
-        '00:00:01.000 --> 00:00:04.000 line:a position:50%',
-      ].join('\n');
+      const input = ['WEBVTT', '', '00:00:01.000 --> 00:00:04.000 line:a position:50%'].join('\n');
       const result = parseVtt(input);
       const settings = result.cues[0].cueSettings;
       expect(settings?.line).toBe(undefined);
@@ -187,12 +181,9 @@ describe('parser', () => {
     });
 
     it('handles missing cue settings gracefully', () => {
-      const input = [
-        'WEBVTT',
-        '',
-        '00:00:01.000 --> 00:00:04.000',
-        'Cue with no settings',
-      ].join('\n');
+      const input = ['WEBVTT', '', '00:00:01.000 --> 00:00:04.000', 'Cue with no settings'].join(
+        '\n',
+      );
       const result = parseVtt(input);
       expect(result.cues[0].cueSettings).toBeUndefined();
     });

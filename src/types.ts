@@ -3,7 +3,7 @@
  */
 export interface Track {
   /** Array of cues in the track. */
-  cues: Cue[];
+  cues: Array<Cue>;
   /** Subtitle format: 'srt' or 'vtt'. */
   format?: TrackFormat;
 }

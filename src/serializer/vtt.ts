@@ -14,7 +14,7 @@ import { formatVttTime } from '../util/time.js';
  * @returns A string representation of the cue settings for a VTT timing line.
  */
 export const serializecueSettings = (settings: CueSettings): string => {
-  const tokens: string[] = [];
+  const tokens: Array<string> = [];
 
   if (settings.line !== undefined) {
     let val: string;
@@ -71,16 +71,12 @@ export const serializecueSettings = (settings: CueSettings): string => {
  * @returns The WebVTT file contents as a string.
  */
 export const serializeVtt = (track: Track): string => {
-  const parts: string[] = ['WEBVTT', ''];
+  const parts: Array<string> = ['WEBVTT', ''];
 
   for (const cue of track.cues) {
     if (cue.id) parts.push(cue.id);
 
-    const timingLineParts = [
-      formatVttTime(cue.start),
-      '-->',
-      formatVttTime(cue.end),
-    ];
+    const timingLineParts = [formatVttTime(cue.start), '-->', formatVttTime(cue.end)];
     if (cue.cueSettings) {
       timingLineParts.push(serializecueSettings(cue.cueSettings));
     }

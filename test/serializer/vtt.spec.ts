@@ -1,12 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-  Cue,
-  CueSettings,
-  Track,
-  serializeVtt,
-  serializecueSettings,
-} from '../../src/index.js';
+import { Cue, CueSettings, Track, serializeVtt, serializecueSettings } from '../../src/index.js';
 
 describe('serializer', () => {
   describe('serializeVtt()', () => {
@@ -100,15 +94,15 @@ describe('serializer', () => {
     });
 
     it('serializes position with percent and positionAlign', () => {
-      expect(
-        serializecueSettings({ position: 90, positionAlign: 'line-right' }),
-      ).toBe('position:90%,line-right');
+      expect(serializecueSettings({ position: 90, positionAlign: 'line-right' })).toBe(
+        'position:90%,line-right',
+      );
     });
 
     it('serializes position with auto positionAlign', () => {
-      expect(
-        serializecueSettings({ position: 90, positionAlign: 'auto' }),
-      ).toBe('position:90%,auto');
+      expect(serializecueSettings({ position: 90, positionAlign: 'auto' })).toBe(
+        'position:90%,auto',
+      );
     });
 
     it('serializes size', () => {

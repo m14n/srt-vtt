@@ -1,11 +1,4 @@
-import {
-  Cue,
-  CueAlign,
-  CueLineAlign,
-  CuePositionAlign,
-  CueSettings,
-  Track,
-} from '../types.js';
+import { Cue, CueAlign, CueLineAlign, CuePositionAlign, CueSettings, Track } from '../types.js';
 import { clamp0to100, parseVttTimestamp, stripBom } from '../util/index.js';
 
 const VTT_HEADER_RE = /^WEBVTT(?:[ \t].*)?$/;
@@ -28,7 +21,7 @@ export const parseVtt = (input: string): Track => {
     throw new Error('Invalid VTT: missing WEBVTT header');
   }
 
-  const cues: Cue[] = [];
+  const cues: Array<Cue> = [];
   let i = 1;
 
   // Skip file-level metadata/comment lines until a blank line.
@@ -50,11 +43,7 @@ export const parseVtt = (input: string): Track => {
     }
 
     // Ignore NOTE / STYLE / REGION blocks in this lightweight core
-    if (
-      /^NOTE($|\s)/.test(lines[i]) ||
-      lines[i] === 'STYLE' ||
-      lines[i] === 'REGION'
-    ) {
+    if (/^NOTE($|\s)/.test(lines[i]) || lines[i] === 'STYLE' || lines[i] === 'REGION') {
       i++;
       while (i < lines.length && lines[i].trim() !== '') i++;
       i++;
@@ -77,7 +66,7 @@ export const parseVtt = (input: string): Track => {
 
     const { end, start, cueSettings } = parseVttTiming(lines[timingLineIdx]);
 
-    const textLines: string[] = [];
+    const textLines: Array<string> = [];
     let j = timingLineIdx + 1;
     while (j < lines.length && lines[j].trim() !== '') {
       textLines.push(lines[j]);
@@ -128,9 +117,7 @@ const isVttCuePositionAlign = (input: string): input is CuePositionAlign => {
  * @returns True if the line is a VTT timing line, false otherwise.
  */
 const isVttTimingLine = (line: string): boolean => {
-  return /\d{2}:\d{2}(?::\d{2})?\.\d{3}\s+-->\s+\d{2}:\d{2}(?::\d{2})?\.\d{3}/.test(
-    line,
-  );
+  return /\d{2}:\d{2}(?::\d{2})?\.\d{3}\s+-->\s+\d{2}:\d{2}(?::\d{2})?\.\d{3}/.test(line);
 };
 
 /**
@@ -142,7 +129,7 @@ const isVttTimingLine = (line: string): boolean => {
  * @param tokens - Array of cue setting strings (e.g., ['align:center', 'size:80%']).
  * @returns A cueSettings object with parsed settings, or undefined if no valid settings are found.
  */
-const parsecueSettings = (tokens: string[]): CueSettings | undefined => {
+const parsecueSettings = (tokens: Array<string>): CueSettings | undefined => {
   const out: CueSettings = {};
   for (const token of tokens) {
     if (!token.includes(':')) {
@@ -199,10 +186,7 @@ const parsecueSettings = (tokens: string[]): CueSettings | undefined => {
       }
 
       const maybeVttCuePositionAlign = anchor?.toLowerCase();
-      if (
-        maybeVttCuePositionAlign &&
-        isVttCuePositionAlign(maybeVttCuePositionAlign)
-      ) {
+      if (maybeVttCuePositionAlign && isVttCuePositionAlign(maybeVttCuePositionAlign)) {
         out.positionAlign = maybeVttCuePositionAlign;
       }
     }
@@ -219,9 +203,7 @@ const parsecueSettings = (tokens: string[]): CueSettings | undefined => {
  * @returns An object containing start and end times (ms) and optional cue settings.
  * @throws If the line does not contain a valid VTT timing.
  */
-const parseVttTiming = (
-  line: string,
-): Pick<Cue, 'end' | 'start' | 'cueSettings'> => {
+const parseVttTiming = (line: string): Pick<Cue, 'end' | 'start' | 'cueSettings'> => {
   if (!line.includes('-->')) {
     throw new Error('Invalid VTT timing line: ' + line);
   }
