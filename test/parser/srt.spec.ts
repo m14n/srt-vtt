@@ -30,8 +30,7 @@ describe('parser', () => {
     });
 
     it('skips blocks without valid timing', () => {
-      const input =
-        '1\ninvalid timing\nText\n\n2\n00:00:03,000 --> 00:00:04,000\nSecond';
+      const input = '1\ninvalid timing\nText\n\n2\n00:00:03,000 --> 00:00:04,000\nSecond';
       const result = parseSrt(input);
       expect(result.cues.length).toBe(1);
       expect(result.cues[0].text).toBe('Second');

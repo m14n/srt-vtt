@@ -16,7 +16,6 @@ export const detectFormat = (input: string): TrackFormat => {
     return 'vtt';
   }
 
-  const hasSrtTime =
-    /(?:^|\n)\d{2}:\d{2}:\d{2},\d{3}\s+-->\s+\d{2}:\d{2}:\d{2},\d{3}/.test(src);
+  const hasSrtTime = /(?:^|\n)\d{2}:\d{2}:\d{2},\d{3}\s+-->\s+\d{2}:\d{2}:\d{2},\d{3}/.test(src);
   return hasSrtTime ? 'srt' : 'vtt';
 };

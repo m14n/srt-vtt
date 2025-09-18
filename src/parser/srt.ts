@@ -11,7 +11,7 @@ import { parseSrtTimestamp } from '../util/time.js';
 export const parseSrt = (input: string): Track => {
   const src = stripBom(input).replace(/\r/g, '');
   const blocks = src.split(/\n{2,}/);
-  const cues: Cue[] = [];
+  const cues: Array<Cue> = [];
 
   for (const block of blocks) {
     const lines = block
@@ -29,10 +29,9 @@ export const parseSrt = (input: string): Track => {
     }
 
     const timingLine = lines[timingIdx];
-    const results =
-      /^(\d{2}:\d{2}:\d{2},\d{3})\s+-->\s+(\d{2}:\d{2}:\d{2},\d{3})$/.exec(
-        timingLine,
-      );
+    const results = /^(\d{2}:\d{2}:\d{2},\d{3})\s+-->\s+(\d{2}:\d{2}:\d{2},\d{3})$/.exec(
+      timingLine,
+    );
     if (!results) {
       continue;
     }

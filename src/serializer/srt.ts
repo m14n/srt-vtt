@@ -10,7 +10,7 @@ import { formatSrtTime } from '../util/time.js';
  * @returns The SRT file contents as a string.
  */
 export const serializeSrt = (track: Track): string => {
-  const parts: string[] = [];
+  const parts: Array<string> = [];
 
   for (let i = 0; i < track.cues.length; i++) {
     const cue = track.cues[i];

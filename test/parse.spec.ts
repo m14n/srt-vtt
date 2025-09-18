@@ -20,9 +20,7 @@ describe('parse', () => {
   });
 
   it('detects format automatically', () => {
-    expect(parse('WEBVTT\n\n00:00:01.000 --> 00:00:04.000\nText').format).toBe(
-      'vtt',
-    );
+    expect(parse('WEBVTT\n\n00:00:01.000 --> 00:00:04.000\nText').format).toBe('vtt');
     expect(parse('1\n00:00:01,000 --> 00:00:04,000\nText').format).toBe('srt');
   });
 

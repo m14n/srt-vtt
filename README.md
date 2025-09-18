@@ -23,7 +23,7 @@ pnpm add @m14n/srt-vtt
 ## Quick Start
 
 ```typescript
-import { parse, serializeSrt, serializeVtt } from "@m14n/srt-vtt";
+import { parse, serializeSrt, serializeVtt } from '@m14n/srt-vtt';
 
 const input = `WEBVTT
 
@@ -34,7 +34,7 @@ const input = `WEBVTT
 const track = parse(input);
 
 // Mutate or inspect the unified model
-track.cues[0].cueSettings = { align: "center", line: 0 };
+track.cues[0].cueSettings = { align: 'center', line: 0 };
 
 // Serialize to VTT
 const vtt = serializeVtt(track);
@@ -63,7 +63,7 @@ export interface Track {
  * - `srt` — SubRip
  * - `vtt` — WebVTT
  */
-export type TrackFormat = "srt" | "vtt";
+export type TrackFormat = 'srt' | 'vtt';
 
 /**
  * Represents a single subtitle cue (line) in a track.
@@ -85,24 +85,24 @@ export interface Cue {
  * Alignment for cue text inside the cue box.
  * Matches VTTCue.align.
  */
-export type CueAlign = "center" | "end" | "left" | "right" | "start";
+export type CueAlign = 'center' | 'end' | 'left' | 'right' | 'start';
 
 /**
  * Anchor for line placement (VTTCue.lineAlign).
  */
-export type CueLineAlign = "center" | "end" | "start";
+export type CueLineAlign = 'center' | 'end' | 'start';
 
 /**
  * Anchor for position placement (VTTCue.positionAlign).
  */
-export type CuePositionAlign = "auto" | "center" | "line-left" | "line-right";
+export type CuePositionAlign = 'auto' | 'center' | 'line-left' | 'line-right';
 
 /**
  * Vertical text flow direction (VTTCue.vertical).
  * - `lr` — left-to-right
  * - `rl` — right-to-left
  */
-export type CueVertical = "lr" | "rl";
+export type CueVertical = 'lr' | 'rl';
 
 /**
  * Advanced cue settings for WebVTT cues (positioning, alignment, etc).
@@ -116,11 +116,11 @@ export interface CueSettings {
    * - If `snapToLines` is `false` — percentage (0–100) → serialized as `line:NN%`.
    * - Or 'auto'.
    */
-  line?: number | "auto";
+  line?: number | 'auto';
   /** Anchor for the `line` placement. */
   lineAlign?: CueLineAlign;
   /** Indentation within the line: percent (0–100) → serialized as `position:NN%`, or 'auto'. */
-  position?: number | "auto";
+  position?: number | 'auto';
   /** Anchor for `position`. */
   positionAlign?: CuePositionAlign;
   /** Region id (if the file references a REGION). */
@@ -153,7 +153,7 @@ export interface CueSettings {
 ### Parse SRT, write VTT
 
 ```typescript
-import { parseSrt, serializeVtt } from "@m14n/srt-vtt";
+import { parseSrt, serializeVtt } from '@m14n/srt-vtt';
 
 const srt = `1
 00:00:01,000 --> 00:00:04,000
@@ -167,7 +167,7 @@ This is a second subtitle
 const track = parseSrt(srt);
 // Add VTT positioning
 track.cues[1].cueSettings = {
-  align: "center",
+  align: 'center',
   line: 0,
   position: 50,
   snapToLines: true,
@@ -179,7 +179,7 @@ const vtt = serializeVtt(track);
 ### Parse VTT, write SRT
 
 ```typescript
-import { parseVtt, serializeSrt } from "@m14n/srt-vtt";
+import { parseVtt, serializeSrt } from '@m14n/srt-vtt';
 
 const vtt = `WEBVTT
 
@@ -198,22 +198,22 @@ const srt = serializeSrt(track); // settings are ignored by SRT format
 ### Building from a structured object
 
 ```typescript
-import { Track, serializeSrt, serializeVtt } from "@m14n/srt-vtt";
+import { Track, serializeSrt, serializeVtt } from '@m14n/srt-vtt';
 
 const track: Track = {
   cues: [
     {
-      id: "intro",
+      id: 'intro',
       start: 0,
       end: 2000,
-      text: "<v Narrator>Welcome!",
+      text: '<v Narrator>Welcome!',
       cueSettings: { line: 0 },
     },
     {
       start: 2500,
       end: 6000,
-      text: "Enjoy the show.",
-      cueSettings: { align: "center" },
+      text: 'Enjoy the show.',
+      cueSettings: { align: 'center' },
     },
   ],
 };
