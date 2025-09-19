@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/m14n/srt-vtt/compare/v0.1.1...v0.1.2) (2025-09-19)
+
+
+### Bug Fixes
+
+* pin dev dependencies ([beede10](https://github.com/m14n/srt-vtt/commit/beede107784f27692a7b8e8ab69aa8381ae8e250))
+
 ## [0.1.1](https://github.com/m14n/srt-vtt/compare/v0.1.0...v0.1.1) (2025-09-18)
 
 
